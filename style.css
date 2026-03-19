@@ -180,6 +180,12 @@ section h2 {
     gap: 3rem;
 }
 
+.info-contato {
+   display: flex;
+   flex-direction: column; 
+   gap: 2.5rem;
+}
+
 .btn-whatsapp {
     display: block;
     background-color: #25d366;
