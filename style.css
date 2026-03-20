@@ -17,6 +17,25 @@
     scroll-behavior: smooth;
 }
 
+/*Classe para animação de elementos*/
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+/* Classe que será adicionada via JavaScript quando o item aparecer na tela */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Regra de ouro para evitar rolagem lateral */
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     background-color: var(--cor-branco);
     color: var(--cor-preto);
@@ -63,16 +82,38 @@ nav ul {
 
 /* --- SEÇÃO INÍCIO (HERO) --- */
 .inicio {
-    background: linear-gradient(rgba(5, 4, 120, 0.85), rgba(5, 4, 120, 0.85));
+    background: linear-gradient(to right, 
+                var(--cor-principal) 25%, 
+                rgba(5, 4, 120, 0.6) 50%, 
+                transparent 90%), 
+                url('assets/img/mecanico-bg.png');
     background-size: cover;
-    background-position: center;
-    height: 70vh;
+    background-position: right center;
+    height: 75vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--cor-branco);
     padding: 0 5%;
+    color: var(--cor-branco);
+    overflow: hidden; /* Garante que a imagem não vaze */
+}
+
+.inicio-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-content {
+    flex: 1;
+    text-align: left;
+    z-index: 2;
+    max-width: 600px;
+}
+
+.hero-image {
+    flex: 1; 
 }
 
 .hero-content h1 {
@@ -80,22 +121,32 @@ nav ul {
     font-size: 3rem;
     margin-bottom: 1rem;
     text-transform: uppercase;
+    line-height: 1.1;
 }
 
 .marcas-badges {
     display: flex;
     gap: 15px;
-    justify-content: center;
     margin: 1.5rem 0;
     font-weight: bold;
     flex-wrap: wrap;
 }
 
 .marcas-badges span {
-    background: rgba(255, 255, 255, 0.1);
+    background-color: var(--cor-branco);
     padding: 5px 15px;
     border-radius: 20px;
     border: 1px solid var(--cor-secundaria);
+}
+
+.marcas-badges a{
+    text-decoration: none;
+    color: var(--cor-principal);
+    transition: 0.3s;
+}
+
+.marcas-badges a:hover {
+    transform: translateY(-3px);
 }
 
 .btn-cta {
@@ -154,14 +205,10 @@ nav ul {
     box-shadow: 0 10px 20px rgba(0,0,0,0.05);
     border-top: 5px solid var(--cor-principal);
     transition: 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
 .card:hover h3 {
@@ -202,10 +249,6 @@ nav ul {
     padding: 50px;
 }
 
-.sobre-texto ul {
-    list-style: none;
-}
-
 .sobre-img img {
     width: 100%;
     max-width: 500px;
@@ -240,27 +283,6 @@ nav ul {
    text-align: left;
 }
 
-.info-contato p {
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
-.btn-whatsapp {
-    display: block;
-    background-color: #25d366;
-    color: white;
-    text-align: center;
-    padding: 1.2rem;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.btn-whatsapp:hover {
-    background-color: #1ebe57;
-}
-
 .mapa {
     border-radius: 20px;
     overflow: hidden;
@@ -268,6 +290,11 @@ nav ul {
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     width: 100%;
     height: 400px;
+}
+
+.mapa iframe {
+    width: 100%;
+    height: 100%;
 }
 
 /* --- FOOTER --- */
@@ -304,44 +331,74 @@ footer {
     animation: pulsar 2s infinite;
 }
 
-.whatsapp-flutuante:hover {
-    transform: scale(1.1);
-    background-color: #128c7e;
-}
-
 .whatsapp-flutuante img {
     width: 25px;
     height: 25px;
 }
 
-/* --- RESPONSIVIDADE --- */
-@media (max-width: 1024px) {
-    section, .servicos-empresa { padding: 4rem 5%; }
-    .hero-content h1 { font-size: 2.5rem; }
-    .sobre-container { gap: 2rem; }
-}
-
+/* --- RESPONSIVIDADE (MOBILE FIX) --- */
 @media (max-width: 768px) {
-    header { padding: 1.5rem 5%; }
+    /* Impedindo rolagem lateral */
+    body {
+        overflow-x: hidden;
+    }
+
+    .inicio {
+        background: linear-gradient(rgba(5, 4, 120, 0.8), rgba(5, 4, 120, 0.8)), 
+                    url('assets/img/mecanico-bg.png');
+        background-position: center;
+        text-align: center;
+        height: auto;
+        min-height: 80vh; /* Garante que preencha a tela */
+        padding: 4rem 1rem; /* Margem lateral menor no mobile */
+        justify-content: center;
+    }
+
+    .inicio-container {
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+    }
+
+    .hero-content {
+        flex: none; /* Remove a proporção do flex */
+        width: 100%;
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .hero-image {
+        display: none; /* Remove o espaçador vazio que jogava o texto pro lado */
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+        width: 100%;
+    }
+
+    .marcas-badges {
+        justify-content: center;
+        width: 100%;
+    }
+
+    header { padding: 1.5rem 1rem; }
     nav { flex-direction: column; gap: 1.5rem; }
     nav ul { gap: 1rem; flex-wrap: wrap; justify-content: center; }
-    
-    .hero-content h1 { font-size: 2rem; }
     
     .sobre-container, 
     .contato-wrapper {
         grid-template-columns: 1fr;
         text-align: center;
+        width: 100%;
     }
 
-    .sobre-texto { padding: 30px; order: 2; }
-    .sobre-img { order: 1; margin-bottom: 2rem; }
-    .sobre-img img { width: 100%; }
+    .sobre-texto { padding: 25px; order: 2; width: 100%; }
+    .sobre-img { order: 1; margin-bottom: 2rem; width: 100%; }
     
-    .servicos-grid { grid-template-columns: 1fr; }
+    .servicos-grid { grid-template-columns: 1fr; width: 100%; }
 
-    .info-contato { text-align: center; align-items: center; }
-    .mapa { height: 300px; }
+    .info-contato { text-align: center; align-items: center; width: 100%; }
+    .mapa { height: 250px; width: 100%; }
     
     .whatsapp-flutuante { bottom: 20px; right: 20px; padding: 12px; }
     .whatsapp-flutuante span { display: none; }
