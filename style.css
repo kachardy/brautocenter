@@ -439,7 +439,7 @@ footer {
         display: flex;
         align-items: flex-start; /* Alinha o ícone com o topo da primeira linha */
         justify-content: center; /* Mantém o bloco no centro da tela */
-        text-align: left; /* Melhora a leitura quando o texto quebra */
+        text-align: center; /* Melhora a leitura quando o texto quebra */
         font-size: 1.8rem;
         gap: 10px;
         padding: 0 10px;
