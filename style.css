@@ -133,6 +133,7 @@ nav ul {
     margin: 1.5rem 0;
     font-weight: bold;
     flex-wrap: wrap;
+    align-items: center; /* Garante alinhamento vertical geral */
 }
 
 .marcas-badges span {
@@ -140,6 +141,16 @@ nav ul {
     padding: 5px 15px;
     border-radius: 20px;
     border: 1px solid var(--cor-secundaria);
+    display: flex; /* Para alinhar imagem e texto dentro do span */
+    align-items: center;
+    gap: 8px; /* Espaço entre ícone e texto */
+}
+
+/* --- AJUSTE SOLICITADO: Diminuir o ícone de pneu --- */
+.icone-pneu-badge {
+    height: 1.1em; /* Tamanho proporcional à altura do texto */
+    width: auto; /* Mantém a proporção */
+    vertical-align: middle; /* Alinhamento fino */
 }
 
 .marcas-badges a{
@@ -180,9 +191,18 @@ nav ul {
 }
 
 .section-header h2 {
-    font-size: 2.5rem;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    gap: 15px; /* Espaço entre o ícone e o texto */
+    font-size: 2.5rem; 
     color: var(--cor-principal);
-    margin-bottom: 0.5rem;
+}
+
+.titulo-icone {
+    width: 45px; /* Tamanho pequeno e fixo */
+    height: 45px; /* Mantém o ícone quadrado */
+    object-fit: contain; /* Garante que a imagem não distorça */
 }
 
 .section-header p {
@@ -414,6 +434,24 @@ footer {
     .sobre-img { order: 1; margin-bottom: 2rem; width: 100%; }
     
     .servicos-grid { grid-template-columns: 1fr; width: 100%; }
+
+    .section-header h2 {
+        display: flex;
+        align-items: flex-start; /* Alinha o ícone com o topo da primeira linha */
+        justify-content: center; /* Mantém o bloco no centro da tela */
+        text-align: left; /* Melhora a leitura quando o texto quebra */
+        font-size: 1.8rem;
+        gap: 10px;
+        padding: 0 10px;
+        margin-bottom: 20px;
+    }
+
+    .titulo-icone {
+        width: 30px; 
+        height: 30px;
+        margin-top: 5px; 
+        flex-shrink: 0; 
+    }
 
     .info-contato { text-align: center; align-items: center; width: 100%; }
     .mapa { height: 250px; width: 100%; }
