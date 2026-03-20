@@ -92,9 +92,12 @@ nav ul {
     height: 75vh;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     padding: 0 5%;
     color: var(--cor-branco);
     overflow: hidden; /* Garante que a imagem não vaze */
+    padding: 0 10%;
+    font-size: 1.3rem;
 }
 
 .inicio-container {
@@ -281,6 +284,21 @@ nav ul {
    justify-content: center;
    gap: 2rem;
    text-align: left;
+}
+
+.info-contato a {
+   color: var(--cor-branco);
+   text-decoration: none;
+   background-color: #25d366;
+   padding: 1rem;
+   border-radius: 30px;
+   text-align: center;
+   font-weight: bold;
+   transition: 0.3s;
+}
+
+.info-contato a:hover {
+   transform: translateY(-3px);
 }
 
 .mapa {
