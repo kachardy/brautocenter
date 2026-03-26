@@ -22,3 +22,12 @@ const observer = new IntersectionObserver((entries, observer) => {
 document.querySelectorAll('.reveal').forEach(element => {
     observer.observe(element);
 });
+
+window.addEventListener("load", function() {
+    const preloader = document.getElementById("preloader");
+    
+    // Define um tempo mínimo de 1.5 segundos para o cliente ver sua marca
+    setTimeout(() => {
+        preloader.classList.add("vazio");
+    }, 1500);
+});
